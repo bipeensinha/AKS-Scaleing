@@ -6,9 +6,9 @@
 # kubectl get hpa
 # kubectl edit hpa
 # kubectl get pods -o wide
-# $SERVICEIP=(kubectl get service nginx -o jsonpath='{ .status.loadBalancer.ingress[0].ip}')
+# SERVICEIP=$(kubectl get service nginx-loadbalancer  -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 # Start-Process http://$SERVICEIP
-# kubectl run -i --rm httperfpod --image=cyrilbkr/httperf --restart=Never -- /bin/sh -c ("httperf  --server"+ $SERVICEIP + " --wsess=10,1000,0 --rate 1")
+# kubectl run -i --rm httperfpod --image=cyrilbkr/httperf --restart=Never -- /bin/sh -c "httperf --server $SERVICEIP --wsess=10,1000,0 --rate 1"
 # kubectl get pods -o wide
 # kubectl get hpa
 # kubectl edit hpa
